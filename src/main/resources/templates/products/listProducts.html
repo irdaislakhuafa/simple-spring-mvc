@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to HomePage</title>
+    <title>All Products</title>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -49,8 +49,26 @@
         </div>
     </nav>
     <div class="container">
-        <h1 th:text="${something}" class="blue"></h1>
-        <button class="btn btn-primary">Tekan aku :v</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ol>
+                    <tr th:each="product : ${listProducts}">
+                        <td th:text="${product.id}"></td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td th:text="${product.description}"></td>
+                    </tr>
+                </ol>
+            </tbody>
+        </table>
     </div>
 
     <script src="/webjars/bootstrap/js/bootstrap.bundle.js"></script>

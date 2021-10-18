@@ -1,4 +1,4 @@
-package com.simple.mvc.simplespringmvc;
+package com.simple.mvc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

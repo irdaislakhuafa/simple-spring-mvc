@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <!-- start navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -48,10 +49,17 @@
             </div>
         </div>
     </nav>
+    <!-- end navbar -->
+
+    <!-- start content -->
     <div class="container">
+        <br><br>
+        <!-- start button -->
         <h1 th:text="${something}" class="blue"></h1>
-        <button class="btn btn-primary">Tekan aku :v</button>
+        <button class="btn btn-primary" th:text="${btnText}"></button>
+        <!-- end button -->
     </div>
+    <!-- end content -->
 
     <script src="/webjars/bootstrap/js/bootstrap.bundle.js"></script>
 </body>

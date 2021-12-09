@@ -10,11 +10,12 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- start navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -48,7 +49,14 @@
             </div>
         </div>
     </nav>
+    <!-- end navbar -->
+
+    <!-- start content -->
     <div class="container">
+        <br><br>
+        <h1 class="display-4 text-center">Products List</h1>
+        <hr>
+        <!-- start table -->
         <table class="table">
             <thead>
                 <tr>
@@ -60,18 +68,21 @@
             </thead>
             <tbody>
                 <ol>
+                    <!-- theach like as foreach -->
                     <tr th:each="product : ${listProducts}">
-                        <td th:text="${product.id}"></td>
-                        <td th:text="${product.name}"></td>
-                        <td th:text="${product.price}"></td>
-                        <td th:text="${product.description}"></td>
+                        <td th:text=" ${product.id} "> </td>
+                        <td th:text="${product.name} "></td>
+                        <td th:text="${product.price} "></td>
+                        <td th:text="${product.description} "></td>
                     </tr>
                 </ol>
             </tbody>
         </table>
+        <!-- end table -->
     </div>
+    <!-- end content -->
 
-    <script src="/webjars/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.js "></script>
 </body>
 
 </html>

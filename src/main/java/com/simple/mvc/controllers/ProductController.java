@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/simple-spring-mvc/products")
+@RequestMapping("/simple-spring-mvc/views/products")
 public class ProductController {
 
     @Autowired

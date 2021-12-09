@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/simple-spring-mvc/views")
 public class HomeController {
 
+    // home.html
     @GetMapping(value = "/home")
     public String welcome(Model model) {
         String something = "Hello World From Controller";
+        String btnTxt = "Teken akuh :v";
         model.addAttribute("something", something);
+        model.addAttribute("btnText", btnTxt);
         return "home";
     }
 

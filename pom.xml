@@ -16,26 +16,35 @@
 		<java.version>8</java.version>
 	</properties>
 	<dependencies>
+
+		<!-- thymeleaf template engine -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+
+		<!-- spring boot starter web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- spring boot devtools (live reload) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- lombok anotations -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- spring boot starter test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -49,6 +58,7 @@
 			<artifactId>bootstrap</artifactId>
 			<version>5.1.2</version>
 		</dependency>
+
 		<!-- for webjars locator -->
 		<dependency>
 			<groupId>org.webjars</groupId>

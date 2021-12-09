@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Component
 @RequestMapping("/")
 public class HandleFirstController {
+
     @GetMapping
     public String firstHandler() {
         return "redirect:/simple-spring-mvc/views/home";

@@ -13,9 +13,12 @@ public class HomeController {
     @GetMapping(value = "/home")
     public String welcome(Model model) {
         String something = "Hello World From Controller";
-        String btnTxt = "Teken akuh :v";
+        String btnTxt = "Pergi ke Products";
+        String title = "Welcome to my homepage :D";
+
         model.addAttribute("something", something);
         model.addAttribute("btnText", btnTxt);
+        model.addAttribute("title", title);
         return "home";
     }
 

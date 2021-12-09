@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${title}">Welcome to HomePage</title>
+    <title th:text="${title}">All Products</title>
+
+    <!-- import CSS -->
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="../../static/css/style.css"> -->
+    <style>
+        .form-group {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -53,17 +61,45 @@
 
     <!-- start content -->
     <div class="container">
-        <br><br>
-        <!-- start button -->
-        <h1 th:text="${something}" class="blue"></h1>
-        <a href="/simple-spring-mvc/views/products">
-            <button class="btn btn-primary" th:text="${btnText}"></button>
-        </a>
-        <!-- end button -->
+        <!-- <div class="container" action="/simple-spring-mvc/views/products/add"> -->
+
+        <!-- add product form -->
+        <form th:object="${product}" method="post" th:action="@{/simple-spring-mvc/views/products/add}">
+
+            <!-- replace name with th:field -->
+            <!-- code -->
+            <div class="form-group">
+                <label for="code" class="form-label">Code</label>
+                <input type="text" id="code" th:field="*{code}" placeholder="Code" class="form-control">
+            </div>
+
+            <!-- name -->
+            <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" th:field="*{name}" placeholder="Name" class="form-control">
+            </div>
+
+            <!-- price -->
+            <div class="form-group">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" id="price" th:field="*{price}" placeholder="Price" class="form-control">
+            </div>
+
+            <!-- description -->
+            <div class="form-group">
+                <label for="description" class="form-label">Description</label>
+                <textarea type="text" class="form-control" rows="5" th:field="*{description}" id="description" placeholder="Description"></textarea>
+            </div>
+
+            <!-- buttons -->
+            <p class="form-group">
+                <button class="btn btn-primary" type="submit">Add Product</button>
+            </p>
+        </form>
     </div>
     <!-- end content -->
 
-    <script src="/webjars/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.js "></script>
 </body>
 
 </html>

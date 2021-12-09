@@ -19,10 +19,7 @@ public class ProductController {
 
     @GetMapping
     public String findAll(Model model) {
-        String title = "List All Products";
-
         model.addAttribute("listProducts", productService.findAll());
-        model.addAttribute("title", title);
         return "products/list";
     }
 
@@ -36,12 +33,12 @@ public class ProductController {
 
     @PostMapping("/add")
     public String saveProduct(Product product, Model model) {
-        String title = "List All Products";
         // save a new product
-        productService.save(product);
-        // send again list products to products/list
-        model.addAttribute("listProducts", productService.findAll());
-        model.addAttribute("title", title);
-        return "products/list";
+        try {
+            productService.save(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/simple-spring-mvc/views/products";
     }
 }

@@ -22,7 +22,6 @@ public class ProductService {
                     new Product("7", "007", "Product 7", 6000.00, "This is description of the product 7")));
 
     public List<Product> findAll() {
-        System.out.println(listProducts.get(listProducts.size() - 1));
         return ProductService.listProducts;
     }
 
@@ -31,14 +30,9 @@ public class ProductService {
         return ProductService.listProducts.get(Integer.valueOf(idString));
     }
 
-    public Boolean save(Product product) {
+    public Boolean save(Product product) throws Exception {
         Integer newId = listProducts.size() + 1;
         product.setId(newId.toString());
-        try {
-            return listProducts.add(product);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+        return listProducts.add(product);
     }
 }

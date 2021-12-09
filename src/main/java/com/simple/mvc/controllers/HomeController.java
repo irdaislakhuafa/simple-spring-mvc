@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/simple-spring-mvc/views")
 public class HomeController {
 
-    @GetMapping(value = "/hello")
+    @GetMapping(value = "/home")
     public String welcome(Model model) {
         String something = "Hello World From Controller";
         model.addAttribute("something", something);

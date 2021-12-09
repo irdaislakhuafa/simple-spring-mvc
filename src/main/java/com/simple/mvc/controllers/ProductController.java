@@ -23,7 +23,7 @@ public class ProductController {
 
         model.addAttribute("listProducts", productService.findAll());
         model.addAttribute("title", title);
-        return "products/listProducts";
+        return "products/list";
     }
 
     // form add product
@@ -31,12 +31,17 @@ public class ProductController {
     public String addProduct(Model model) {
         // send new Product() object to html file
         model.addAttribute("product", new Product());
-        return "products/addProduct";
+        return "products/add";
     }
 
     @PostMapping("/add")
-    public String saveProduct(Product product) {
-        System.out.println(product.getName());
-        return "redirect:/simple-spring-mvc/views/products";
+    public String saveProduct(Product product, Model model) {
+        String title = "List All Products";
+        // save a new product
+        productService.save(product);
+        // send again list products to products/list
+        model.addAttribute("listProducts", productService.findAll());
+        model.addAttribute("title", title);
+        return "products/list";
     }
 }

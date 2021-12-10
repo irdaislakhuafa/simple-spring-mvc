@@ -35,4 +35,8 @@ public class ProductService {
         product.setId(newId.toString());
         return listProducts.add(product);
     }
+
+    public Product findById(String id) {
+        return ProductService.listProducts.get(Integer.valueOf(id));
+    }
 }

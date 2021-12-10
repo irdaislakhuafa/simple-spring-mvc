@@ -65,6 +65,7 @@
                     <th>Code</th>
                     <th>Price</th>
                     <th>Description</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,6 +77,10 @@
                         <td th:text="${product.name} "></td>
                         <td th:text="${product.price} "></td>
                         <td th:text="${product.description} "></td>
+                        <td>
+                            <a class="btn btn-outline-success">Edit</a>
+                            <a class="btn btn-outline-danger" th:href="@{'/simple-spring-mvc/views/products/delete/'+${product.id}}">Del</a>
+                        </td>
                     </tr>
                 </ol>
             </tbody>

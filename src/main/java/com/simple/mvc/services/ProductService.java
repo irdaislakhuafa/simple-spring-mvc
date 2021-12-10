@@ -22,12 +22,12 @@ public class ProductService {
                     new Product("7", "007", "Product 7", 6000.00, "This is description of the product 7")));
 
     public List<Product> findAll() {
-        return ProductService.listProducts;
+        return listProducts;
     }
 
     public Product findById(Long id) {
         String idString = Long.toString(id);
-        return ProductService.listProducts.get(Integer.valueOf(idString));
+        return listProducts.get(Integer.valueOf(idString));
     }
 
     public Boolean save(Product product) throws Exception {
@@ -37,13 +37,18 @@ public class ProductService {
     }
 
     public Product findById(String id) {
-        return ProductService.listProducts.get(Integer.valueOf(id));
+        // return listProducts.get(Integer.valueOf(id) - 1);
+        return listProducts.stream().filter(product -> product.getId().equalsIgnoreCase(id)).findFirst().get();
     }
 
     public Boolean deleteById(String id) {
         // Integer temp = Integer.valueOf(id) - 1;
-        // ProductService.listProducts.remove(findById());
-        ProductService.listProducts.removeIf(product -> product.getId().equalsIgnoreCase(id));
-        return true;
+        // listProducts.remove(findById());
+        return listProducts.removeIf(product -> product.getId().equalsIgnoreCase(id));
+    }
+
+    public Boolean update(Product productOld, Product productNew) {
+        Product status = listProducts.set(listProducts.indexOf(productOld), productNew);
+        return (status == null) ? false : true;
     }
 }

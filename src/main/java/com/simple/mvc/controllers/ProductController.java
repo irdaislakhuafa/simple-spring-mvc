@@ -53,4 +53,24 @@ public class ProductController {
         return "redirect:/simple-spring-mvc/views/products";
     }
     // end delete
+
+    // start edit
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") String id, Model model) {
+        // System.out.println(productService.findById(id));
+        Product product = productService.findById(id);
+        model.addAttribute("product", product);
+        return "products/edit";
+    }
+    // end edit
+
+    // start update
+    @PostMapping("/update")
+    public String update(Product product) {
+        Product productOld = productService.findById(product.getId());
+        Product productNew = product;
+        productService.update(productOld, productNew);
+        return "redirect:/simple-spring-mvc/views/products";
+    }
+    // end update
 }

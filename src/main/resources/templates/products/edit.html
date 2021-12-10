@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List All Products</title>
+    <title th:text="${title}">Edit Product</title>
+
+    <!-- import CSS -->
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
@@ -54,38 +57,46 @@
     <!-- start content -->
     <div class="container">
         <br><br>
-        <h1 class="display-4 text-center">Products List</h1>
+        <h1 class="display-4 text-center">Edit Product</h1>
         <hr>
-        <!-- start table -->
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <ol>
-                    <!-- theach like as foreach -->
-                    <tr th:each="product : ${listProducts}">
-                        <td th:text="${product.id} "> </td>
-                        <td th:text="${product.code} "></td>
-                        <td th:text="${product.name} "></td>
-                        <td th:text="${product.price} "></td>
-                        <td th:text="${product.description} "></td>
-                        <td>
-                            <a class="btn btn-outline-success" th:href="@{'/simple-spring-mvc/views/products/edit/'+${product.id}}">Edit</a>
-                            <a class="btn btn-outline-danger" th:href="@{'/simple-spring-mvc/views/products/delete/'+${product.id}}">Del</a>
-                        </td>
-                    </tr>
-                </ol>
-            </tbody>
-        </table>
-        <!-- end table -->
+        <!-- add product form -->
+        <form th:object="${product}" method="post" th:action="@{/simple-spring-mvc/views/products/update}">
+
+            <!-- replace name with th:field -->
+            <!-- code -->
+            <div class="form-group">
+                <label for="code" class="form-label">Code</label>
+                <input type="text" id="code" th:field="*{code}" placeholder="Code" class="form-control" required>
+            </div>
+
+            <!-- name -->
+            <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" th:field="*{name}" placeholder="Name" class="form-control" required>
+            </div>
+
+            <!-- price -->
+            <div class="form-group">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" id="price" th:field="*{price}" placeholder="Price" class="form-control" required>
+            </div>
+
+            <!-- description -->
+            <div class="form-group">
+                <label for="description" class="form-label">Description</label>
+                <textarea type="text" class="form-control" rows="5" th:field="*{description}" id="description" placeholder="Description" required></textarea>
+            </div>
+            <!-- id -->
+            <input type="hidden" th:field="*{id}">
+
+            <!-- buttons -->
+            <p class="form-group">
+                <button class="btn btn-primary me-3" type="submit">Save</button>
+                <a th:href="@{/simple-spring-mvc/views/products}">
+                    <button class="btn btn-danger" type="button">Back</button>
+                </a>
+            </p>
+        </form>
     </div>
     <!-- end content -->
 

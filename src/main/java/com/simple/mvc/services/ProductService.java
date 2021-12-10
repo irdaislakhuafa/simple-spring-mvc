@@ -39,4 +39,11 @@ public class ProductService {
     public Product findById(String id) {
         return ProductService.listProducts.get(Integer.valueOf(id));
     }
+
+    public Boolean deleteById(String id) {
+        // Integer temp = Integer.valueOf(id) - 1;
+        // ProductService.listProducts.remove(findById());
+        ProductService.listProducts.removeIf(product -> product.getId().equalsIgnoreCase(id));
+        return true;
+    }
 }

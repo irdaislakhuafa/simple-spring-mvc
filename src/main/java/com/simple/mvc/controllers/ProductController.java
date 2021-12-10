@@ -47,8 +47,9 @@ public class ProductController {
     // start delete
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") String id) {
-        Product product = productService.findById(id);
-        System.out.println(product);
+        // Product product = productService.findById(id);
+        // System.out.println(product);
+        productService.deleteById(id);
         return "redirect:/simple-spring-mvc/views/products";
     }
     // end delete

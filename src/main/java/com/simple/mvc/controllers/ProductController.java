@@ -23,7 +23,7 @@ public class ProductController {
         return "products/list";
     }
 
-    // form add product
+    // start add form
     @GetMapping("/add")
     public String addProduct(Model model) {
         // send new Product() object to html file
@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public String saveProduct(Product product, Model model) {
+    public String saveProduct(Product product) {
         // save a new product
         try {
             productService.save(product);
@@ -41,4 +41,6 @@ public class ProductController {
         }
         return "redirect:/simple-spring-mvc/views/products";
     }
+    // end add form
+
 }

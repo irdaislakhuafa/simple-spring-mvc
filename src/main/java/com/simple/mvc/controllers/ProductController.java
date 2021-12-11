@@ -67,9 +67,13 @@ public class ProductController {
     // start update
     @PostMapping("/update")
     public String update(Product product) {
-        Product productOld = productService.findById(product.getId());
-        Product productNew = product;
-        productService.update(productOld, productNew); // return boolean type
+        try {
+            productService.update(product); // return boolean type
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(product);
+            e.printStackTrace();
+        }
         return "redirect:/simple-spring-mvc/views/products";
     }
     // end update

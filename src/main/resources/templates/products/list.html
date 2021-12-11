@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List All Products</title>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
@@ -60,7 +61,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <!-- <th>ID</th> -->
                     <th>Code</th>
                     <th>Name</th>
                     <th>Price</th>
@@ -72,14 +73,16 @@
                 <ol>
                     <!-- theach like as foreach -->
                     <tr th:each="product : ${listProducts}">
-                        <td th:text="${product.id} "> </td>
+                        <!-- <td th:text="${product.id} "> </td> -->
                         <td th:text="${product.code} "></td>
-                        <td th:text="${product.name} "></td>
-                        <td th:text="${product.price} "></td>
+                        <td class="col-sm-2" th:text="${product.name} "></td>
+                        <td class="col-sm-1">Rp.
+                            <a th:text="${product.price} "></a>
+                        </td>
                         <td th:text="${product.description} "></td>
-                        <td>
-                            <a class="btn btn-outline-success" th:href="@{'/simple-spring-mvc/views/products/edit/'+${product.id}}">Edit</a>
-                            <a class="btn btn-outline-danger" th:href="@{'/simple-spring-mvc/views/products/delete/'+${product.id}}">Del</a>
+                        <td class="col-sm-2">
+                            <a class="btn m-1 btn-outline-success" th:href="@{'/simple-spring-mvc/views/products/edit/'+${product.id}}">Edit</a>
+                            <a class="btn m-1 btn-outline-danger" th:href="@{'/simple-spring-mvc/views/products/delete/'+${product.id}}">Del</a>
                         </td>
                     </tr>
                 </ol>

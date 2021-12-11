@@ -69,7 +69,7 @@ public class ProductController {
     public String update(Product product) {
         Product productOld = productService.findById(product.getId());
         Product productNew = product;
-        productService.update(productOld, productNew);
+        productService.update(productOld, productNew); // return boolean type
         return "redirect:/simple-spring-mvc/views/products";
     }
     // end update

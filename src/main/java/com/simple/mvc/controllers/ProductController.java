@@ -1,8 +1,5 @@
 package com.simple.mvc.controllers;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.simple.mvc.models.dto.SearchKeyword;
 import com.simple.mvc.models.entity.Product;
 import com.simple.mvc.services.ProductService;

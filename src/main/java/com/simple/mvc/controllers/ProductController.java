@@ -1,5 +1,9 @@
 package com.simple.mvc.controllers;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.simple.mvc.models.dto.SearchKeyword;
 import com.simple.mvc.models.entity.Product;
 import com.simple.mvc.services.ProductService;
 
@@ -20,6 +24,7 @@ public class ProductController {
 
     @GetMapping
     public String findAll(Model model) {
+        model.addAttribute("search", new SearchKeyword());
         model.addAttribute("listProducts", productService.findAll());
         return "products/list";
     }
@@ -77,4 +82,23 @@ public class ProductController {
         return "redirect:/simple-spring-mvc/views/products";
     }
     // end update
+
+    // start search
+    @PostMapping("/search")
+    public String search(SearchKeyword keyword, Model model) {
+        Double price = Double.valueOf(0);
+        try {
+            price = Double.valueOf(keyword.getKeyword());
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        model.addAttribute("search", keyword);
+        model.addAttribute("listProducts",
+                productService.findByNameOrPriceOrCode(keyword.getKeyword(), price,
+                        keyword.getKeyword()));
+        System.out.println(keyword.getKeyword());
+        return "products/list";
+    }
+    // end search
 }

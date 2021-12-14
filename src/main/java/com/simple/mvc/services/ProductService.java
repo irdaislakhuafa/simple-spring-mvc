@@ -32,11 +32,14 @@ public class ProductService {
 
     public void deleteById(String id) {
         productRepository.deleteById(id);
-        ;
     }
 
     public Boolean update(Product product) {
         Product tempProduct = productRepository.save(product);
         return (tempProduct != null);
+    }
+
+    public List<Product> findByNameOrPriceOrCode(String name, Double price, String code) {
+        return productRepository.findByNameContainsIgnoreCaseOrPriceLessThanEqualOrCodeContains(name, price, code);
     }
 }

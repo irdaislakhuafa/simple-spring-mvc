@@ -42,7 +42,7 @@
                         <a class="nav-link disabled">Disabled</a>
                     </li>
                 </ul>
-                <form class="d-flex" th:object="${searchKeyword}" th:action="@{/simple-spring-mvc/views/products/search}">
+                <form class="d-flex" th:object="${search}" th:action="@{/simple-spring-mvc/views/products/search}">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" th:field="*{keyword}">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>

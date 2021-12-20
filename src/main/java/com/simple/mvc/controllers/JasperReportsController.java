@@ -27,10 +27,15 @@ public class JasperReportsController {
 
     @GetMapping("/products")
     public void getProductsReport() throws Exception {
+        Date date = new Date();
+        String fileName = "productsList-" + date.toInstant() + ".pdf";
+
+        System.out.println(fileName);
+
         response.setContentType(MediaType.APPLICATION_PDF_VALUE); // set content type
         response.setHeader(
-                "Content-Disposotion",
-                "attachment; filename=\"products_list " + new Date() + ".pdf\"");
+                "Content-Disposition",
+                "attachment; filename=\"" + fileName + "\"");
 
         // ! call JasperPrint object
         JasperPrint jasperPrint = jasperReportsService
@@ -38,5 +43,15 @@ public class JasperReportsController {
 
         // ? export JasperPrint object to PDF (input, output)
         JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+    }
+
+    @GetMapping("/test")
+    public JasperPrint test() {
+        try {
+            return jasperReportsService.generateJasperPrintObject("templates/reports/ListProductsjrxml.jasper");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

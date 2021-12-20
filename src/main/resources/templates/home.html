@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${title}">Welcome to HomePage</title>
+    <title th:text="${title}">List Mahasiswa</title>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -56,7 +56,7 @@
         <br><br>
         <!-- start button -->
         <h1 th:text="${something}" class="blue"></h1>
-        <a href="/simple-spring-mvc/views/products">
+        <a th:href="@{/simple-spring-mvc/views/products}">
             <button class="btn btn-primary" th:text="${btnText}"></button>
         </a>
         <!-- end button -->

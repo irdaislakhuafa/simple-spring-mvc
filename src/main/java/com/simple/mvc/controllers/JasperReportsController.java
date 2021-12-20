@@ -33,7 +33,8 @@ public class JasperReportsController {
                 "attachment; filename=\"products_list " + new Date() + ".pdf\"");
 
         // ! call JasperPrint object
-        JasperPrint jasperPrint = jasperReportsService.generateJasperPrintObject("reports/ListProductsjrxml.jasper");
+        JasperPrint jasperPrint = jasperReportsService
+                .generateJasperPrintObject("templates/reports/ListProductsjrxml.jasper");
 
         // ? export JasperPrint object to PDF (input, output)
         JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());

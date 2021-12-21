@@ -55,7 +55,15 @@
     <!-- start content -->
     <div class="container">
         <br><br>
-        <h1 class="display-4 text-center">Products List</h1>
+        <div class="row">
+            <div class="col-sm-10">
+                <h1 class="display-4 text-center">Products List</h1>
+            </div>
+
+            <div class="col-sm-2 mt-4">
+                <a class="btn btn-primary" th:href="@{/reports/products}" role="button">Downloas List</a>
+            </div>
+        </div>
         <hr>
         <!-- start table -->
         <table class="table">

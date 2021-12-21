@@ -41,8 +41,14 @@ public class JasperReportsController {
         JasperPrint jasperPrint = jasperReportsService
                 .generateJasperPrintObject("templates/reports/ListProductsjrxml.jasper");
 
+        // ? send buffer to file and clear the buffer
+        response.getOutputStream().flush();
+
         // ? export JasperPrint object to PDF (input, output)
         JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+
+        // ! close the buffer
+        response.getOutputStream().close();
     }
 
     @GetMapping("/test")

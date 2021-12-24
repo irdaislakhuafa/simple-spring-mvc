@@ -1,5 +1,6 @@
 package com.simple.mvc.controllers;
 
+import com.simple.mvc.helpers.BaseHelpers;
 import com.simple.mvc.models.dto.SearchKeyword;
 import com.simple.mvc.models.entity.Product;
 import com.simple.mvc.services.ProductService;
@@ -19,10 +20,13 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    private static final String productsUrl = BaseHelpers.getBaseUrl() + "/products";
+
     @GetMapping
     public String findAll(Model model) {
         model.addAttribute("search", new SearchKeyword());
         model.addAttribute("listProducts", productService.findAll());
+        model.addAttribute("productsUrl", productsUrl);
         return "products/list";
     }
 
@@ -31,6 +35,7 @@ public class ProductController {
     public String addProduct(Model model) {
         // send new Product() object to html file
         model.addAttribute("product", new Product());
+        model.addAttribute("baseUrl", BaseHelpers.getBaseUrl());
         return "products/add";
     }
 
@@ -42,7 +47,7 @@ public class ProductController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/simple-spring-mvc/views/products";
+        return "redirect:" + productsUrl;
     }
     // end add form
 
@@ -52,7 +57,7 @@ public class ProductController {
         // Product product = productService.findById(id);
         // System.out.println(product);
         productService.deleteById(id);
-        return "redirect:/simple-spring-mvc/views/products";
+        return "redirect:" + productsUrl;
     }
     // end delete
 
@@ -62,6 +67,7 @@ public class ProductController {
         // System.out.println(productService.findById(id));
         Product product = productService.findById(id);
         model.addAttribute("product", product);
+        model.addAttribute("productsUrl", productsUrl);
         return "products/edit";
     }
     // end edit
@@ -76,7 +82,7 @@ public class ProductController {
             System.out.println(product);
             e.printStackTrace();
         }
-        return "redirect:/simple-spring-mvc/views/products";
+        return "redirect:" + productsUrl;
     }
     // end update
 

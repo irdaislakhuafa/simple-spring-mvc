@@ -60,7 +60,7 @@
         <h1 class="display-4 text-center">Edit Product</h1>
         <hr>
         <!-- add product form -->
-        <form th:object="${product}" method="post" th:action="@{/simple-spring-mvc/views/products/update}">
+        <form th:object="${product}" method="post" th:action="@{${productsUrl} + '/update'}">
 
             <!-- replace name with th:field -->
             <!-- code -->
@@ -92,7 +92,7 @@
             <!-- buttons -->
             <p class="form-group">
                 <button class="btn btn-primary me-3" type="submit">Save</button>
-                <a th:href="@{/simple-spring-mvc/views/products}">
+                <a th:href="@{ ${productsUrl} }">
                     <button class="btn btn-danger" type="button">Back</button>
                 </a>
             </p>

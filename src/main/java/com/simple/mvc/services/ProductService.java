@@ -42,4 +42,8 @@ public class ProductService {
     public List<Product> findByNameOrPriceOrCode(String name, Double price, String code) {
         return productRepository.findByNameContainsIgnoreCaseOrPriceLessThanEqualOrCodeContains(name, price, code);
     }
+
+    public List<Product> findByName(String name) {
+        return productRepository.findByNameContainsIgnoreCase(name);
+    }
 }

@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<Product, String> {
     List<Product> findByNameContainsIgnoreCaseOrPriceLessThanEqualOrCodeContains(String name, Double price,
             String code);
+
+    List<Product> findByNameContainsIgnoreCase(String name);
 }

@@ -102,9 +102,10 @@ public class ProductController {
             e.printStackTrace();
         }
         model.addAttribute("search", keyword);
-        model.addAttribute("listProducts",
-                productService.findByNameOrPriceOrCode(keyword.getKeyword(), price,
-                        keyword.getKeyword()));
+        // model.addAttribute("listProducts",
+        // productService.findByNameOrPriceOrCode(keyword.getKeyword(), price,
+        // keyword.getKeyword()));
+        model.addAttribute("listProducts", productService.findByName(keyword.getKeyword()));
         model.addAttribute("productsUrl", productsUrl);
 
         // add attribut to session

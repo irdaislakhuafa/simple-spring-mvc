@@ -3,6 +3,7 @@ package com.simple.mvc.controllers;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.simple.mvc.services.JasperReportsService;
 
@@ -25,6 +26,9 @@ public class JasperReportsController {
     @Autowired // ? inject HttpServletResponse to handle response manually
     private HttpServletResponse response;
 
+    @Autowired
+    private HttpSession session;
+
     @GetMapping("/products")
     public void getProductsReport() throws Exception {
         Date date = new Date();
@@ -37,12 +41,16 @@ public class JasperReportsController {
                 "Content-Disposition",
                 "attachment; filename=\"" + fileName + "\"");
 
+        String keyword = session.getAttribute("searchKeyword").toString();
+
         // ! call JasperPrint object
         JasperPrint jasperPrint = jasperReportsService
-                .generateJasperPrintObject("templates/reports/ListProductsjrxml.jasper");
+                .generateJasperPrintObjectWithParams("templates/reports/ProductsList.jasper",
+                        keyword);
 
         // ? send buffer to file and clear the buffer
         response.getOutputStream().flush();
+        System.out.println("Kerywordnya => " + keyword);
 
         // ? export JasperPrint object to PDF (input, output)
         JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());

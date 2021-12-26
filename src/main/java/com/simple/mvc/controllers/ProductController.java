@@ -1,5 +1,7 @@
 package com.simple.mvc.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import com.simple.mvc.helpers.BaseHelpers;
 import com.simple.mvc.models.dto.SearchKeyword;
 import com.simple.mvc.models.entity.Product;
@@ -19,6 +21,9 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired // get session in Spring Boot
+    private HttpSession session;
 
     private static final String productsUrl = BaseHelpers.getBaseUrl() + "/products";
 
@@ -102,7 +107,9 @@ public class ProductController {
                         keyword.getKeyword()));
         model.addAttribute("productsUrl", productsUrl);
 
-        System.out.println(keyword.getKeyword());
+        // add attribut to session
+        session.setAttribute("searchKeyword", keyword.getKeyword());
+
         return "products/list";
     }
 

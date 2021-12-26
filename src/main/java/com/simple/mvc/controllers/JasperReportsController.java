@@ -34,8 +34,6 @@ public class JasperReportsController {
         Date date = new Date();
         String fileName = "productsList-" + date.toInstant() + ".pdf";
 
-        System.out.println(fileName);
-
         response.setContentType(MediaType.APPLICATION_PDF_VALUE); // set content type
         response.setHeader(
                 "Content-Disposition",
@@ -50,7 +48,6 @@ public class JasperReportsController {
 
         // ? send buffer to file and clear the buffer
         response.getOutputStream().flush();
-        System.out.println("Kerywordnya => " + keyword);
 
         // ? export JasperPrint object to PDF (input, output)
         JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());

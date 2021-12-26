@@ -100,8 +100,15 @@ public class ProductController {
         model.addAttribute("listProducts",
                 productService.findByNameOrPriceOrCode(keyword.getKeyword(), price,
                         keyword.getKeyword()));
+        model.addAttribute("productsUrl", productsUrl);
+
         System.out.println(keyword.getKeyword());
         return "products/list";
+    }
+
+    @GetMapping("/search")
+    public String redirectSearchToProductList() {
+        return "redirect:" + productsUrl;
     }
     // end search
 }

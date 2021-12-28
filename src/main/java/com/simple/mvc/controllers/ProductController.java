@@ -94,13 +94,13 @@ public class ProductController {
     // start search
     @PostMapping("/search")
     public String search(SearchKeyword keyword, Model model) {
-        Double price = Double.valueOf(0);
-        try {
-            price = Double.valueOf(keyword.getKeyword());
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
+        // Double price = Double.valueOf(0);
+        // try {
+        // price = Double.valueOf(keyword.getKeyword());
+        // } catch (Exception e) {
+        // // TODO: handle exception
+        // e.printStackTrace();
+        // }
         model.addAttribute("search", keyword);
         // model.addAttribute("listProducts",
         // productService.findByNameOrPriceOrCode(keyword.getKeyword(), price,

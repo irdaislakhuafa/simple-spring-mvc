@@ -17,6 +17,9 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private MailService mailService;
+
     public List<Product> findAll() {
         return productRepository.findAll();
     }
@@ -27,6 +30,14 @@ public class ProductService {
 
     public Boolean save(Product product) throws Exception {
         Product tempProduct = productRepository.save(product);
+        mailService.sendEmail(
+                // to
+                "Anaardani@gmail.com",
+                // subject
+                "New Products has been added",
+                // message
+                "Hello, new product with code " + product.getCode()
+                        + " and name " + product.getName() + " has been created");
         return (tempProduct != null);
     }
 

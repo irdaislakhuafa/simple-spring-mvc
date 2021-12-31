@@ -24,6 +24,7 @@ public class EmailService {
                     setText(text);
                 }
             };
+            System.err.println(simpleMailMessage);
             mailSender.send(simpleMailMessage);
             // }).start();
             sendStatus = true;

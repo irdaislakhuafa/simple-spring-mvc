@@ -38,17 +38,9 @@ public class ProductService {
         String from = "irdhaislakhuafa@gmail.com",
                 to = "rizkiekaputri0911r@gmail.com",
                 subject = "New Products has been added",
-                text = "Hello" + to + ", new product with code \"" + product.getCode()
+                text = "Hello " + to + ", new product with code \"" + product.getCode()
                         + "\" and name \"" + product.getName() + "\" has been created at " + now;
-        mailService.sendEmail(
-                // from
-                from,
-                // to
-                to,
-                // subject
-                subject,
-                // message
-                text);
+        mailService.sendEmail(from, to, subject, text);
         // }).start();
         System.out.println("Email already send");
         return (tempProduct != null);

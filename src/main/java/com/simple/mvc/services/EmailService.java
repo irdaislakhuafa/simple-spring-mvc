@@ -15,7 +15,6 @@ public class EmailService {
     public Boolean sendEmail(String from, String to, String subject, String text) {
         Boolean sendStatus = false;
         try {
-            // new Thread(() -> {
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage() {
                 {
                     setFrom(from);
@@ -26,7 +25,6 @@ public class EmailService {
             };
             System.err.println(simpleMailMessage);
             mailSender.send(simpleMailMessage);
-            // }).start();
             sendStatus = true;
         } catch (Exception e) {
             e.printStackTrace();

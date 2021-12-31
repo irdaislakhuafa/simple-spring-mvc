@@ -31,7 +31,6 @@ public class ProductService {
     }
 
     public Boolean save(Product product) throws Exception {
-        Product tempProduct = productRepository.save(product);
 
         // new Thread(() -> {
         String now = new SimpleDateFormat("DD MMMM YYYY").format(new Date());
@@ -40,9 +39,11 @@ public class ProductService {
                 subject = "New Products has been added",
                 text = "Hello " + to + ", new product with code \"" + product.getCode()
                         + "\" and name \"" + product.getName() + "\" has been created at " + now;
+
         mailService.sendEmail(from, to, subject, text);
         // }).start();
         System.out.println("Email already send");
+        Product tempProduct = productRepository.save(product);
         return (tempProduct != null);
     }
 

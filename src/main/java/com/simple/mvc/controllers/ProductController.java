@@ -51,13 +51,11 @@ public class ProductController {
     @Async
     public String saveProduct(Product product) {
         // save a new product
-        new Thread(() -> {
-            try {
-                productService.save(product);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }).start();
+        try {
+            productService.save(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "redirect:" + productsUrl;
     }
     // end add form

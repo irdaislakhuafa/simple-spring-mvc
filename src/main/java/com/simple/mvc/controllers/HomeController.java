@@ -2,6 +2,7 @@ package com.simple.mvc.controllers;
 
 import com.simple.mvc.models.dto.SearchKeyword;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ public class HomeController {
 
     // home.html
     @GetMapping(value = "/home")
+    @Async
     public String welcome(Model model) {
         String something = "Hello World From Controller";
         String btnTxt = "Pergi ke Products";

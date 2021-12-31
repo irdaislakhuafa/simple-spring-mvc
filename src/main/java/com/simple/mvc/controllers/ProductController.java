@@ -8,6 +8,7 @@ import com.simple.mvc.models.entity.Product;
 import com.simple.mvc.services.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ public class ProductController {
     private static final String productsUrl = BaseHelpers.getBaseUrl() + "/products";
 
     @GetMapping
+    @Async
     public String findAll(Model model) {
         model.addAttribute("search", new SearchKeyword());
         model.addAttribute("listProducts", productService.findAll());
@@ -37,6 +39,7 @@ public class ProductController {
 
     // start add form
     @GetMapping("/add")
+    @Async
     public String addProduct(Model model) {
         // send new Product() object to html file
         model.addAttribute("product", new Product());
@@ -45,19 +48,23 @@ public class ProductController {
     }
 
     @PostMapping("/add")
+    @Async
     public String saveProduct(Product product) {
         // save a new product
-        try {
-            productService.save(product);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        new Thread(() -> {
+            try {
+                productService.save(product);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
         return "redirect:" + productsUrl;
     }
     // end add form
 
     // start delete
     @GetMapping("/delete/{id}")
+    @Async
     public String delete(@PathVariable("id") String id) {
         // Product product = productService.findById(id);
         // System.out.println(product);
@@ -68,6 +75,7 @@ public class ProductController {
 
     // start edit
     @GetMapping("/edit/{id}")
+    @Async
     public String edit(@PathVariable("id") String id, Model model) {
         // System.out.println(productService.findById(id));
         Product product = productService.findById(id);
@@ -79,6 +87,7 @@ public class ProductController {
 
     // start update
     @PostMapping("/update")
+    @Async
     public String update(Product product) {
         try {
             productService.update(product); // return boolean type
@@ -93,6 +102,7 @@ public class ProductController {
 
     // start search
     @PostMapping("/search")
+    @Async
     public String search(SearchKeyword keyword, Model model) {
         // Double price = Double.valueOf(0);
         // try {
@@ -115,6 +125,7 @@ public class ProductController {
     }
 
     @GetMapping("/search")
+    @Async
     public String redirectSearchToProductList() {
         return "redirect:" + productsUrl;
     }

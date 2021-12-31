@@ -9,6 +9,7 @@ import com.simple.mvc.services.JasperReportsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,7 @@ public class JasperReportsController {
     private HttpSession session;
 
     @GetMapping("/products")
+    @Async
     public void getProductsReport() throws Exception {
         Date date = new Date();
         String fileName = "productsList-" + date.toInstant() + ".pdf";
@@ -57,6 +59,7 @@ public class JasperReportsController {
     }
 
     @GetMapping("/test")
+    @Async
     public JasperPrint test() {
         try {
             return jasperReportsService.generateJasperPrintObject("templates/reports/ListProductsjrxml.jasper");

@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -24,6 +25,7 @@ public class JasperReportsService {
     // @Autowired // get session
     // private HttpSession session;
 
+    @Async
     private Connection getConnection() {
         try {
             return dataSource.getConnection(); // get connection database from datasource
@@ -35,6 +37,7 @@ public class JasperReportsService {
     }
 
     // generate object from jasperreports with JasperPrint
+    @Async
     public JasperPrint generateJasperPrintObject(String sourceFile) throws Exception {
         InputStream reportFile = new ClassPathResource(sourceFile).getInputStream();
 
@@ -49,6 +52,7 @@ public class JasperReportsService {
 
     // overloading method
     // generate object from jasperreports with JasperPrint
+    @Async
     public JasperPrint generateJasperPrintObjectWithParams(String sourceFile, String nameParameter) throws Exception {
         InputStream reportFile = new ClassPathResource(sourceFile).getInputStream();
 

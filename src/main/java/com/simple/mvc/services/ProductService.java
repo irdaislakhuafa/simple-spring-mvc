@@ -20,7 +20,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     @Autowired
-    private EmailService mailService;
+    private EmailService emailService;
 
     public List<Product> findAll() {
         return productRepository.findAll();
@@ -31,18 +31,19 @@ public class ProductService {
     }
 
     public Boolean save(Product product) throws Exception {
+        new Thread(() -> {
+            Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD MMMM YYYY");
+            String now = simpleDateFormat.format(date);
 
-        // new Thread(() -> {
-        String now = new SimpleDateFormat("DD MMMM YYYY").format(new Date());
-        String from = "irdhaislakhuafa@gmail.com",
-                to = "rizkiekaputri0911r@gmail.com",
-                subject = "New Products has been added",
-                text = "Hello " + to + ", new product with code \"" + product.getCode()
-                        + "\" and name \"" + product.getName() + "\" has been created at " + now;
+            String from = "irdhaislakhuafa@gmail.com",
+                    to = "rizkiekaputri0911r@gmail.com",
+                    subject = "New product has been created",
+                    textMessage = "New product with name \"" + product.getName() + "\" and code \"" + product.getCode()
+                            + "\" has been created at " + now;
 
-        mailService.sendEmail(from, to, subject, text);
-        // }).start();
-        System.out.println("Email already send");
+            emailService.sendEmail(from, to, subject, textMessage);
+        }).start();
         Product tempProduct = productRepository.save(product);
         return (tempProduct != null);
     }

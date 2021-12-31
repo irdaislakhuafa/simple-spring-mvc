@@ -1,5 +1,7 @@
 package com.simple.mvc.services;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -18,6 +20,9 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     @Async
     public List<Product> findAll() {
         return productRepository.findAll();
@@ -30,6 +35,19 @@ public class ProductService {
 
     @Async
     public Boolean save(Product product) throws Exception {
+        new Thread(() -> {
+            Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD MMMM YYYY");
+            String now = simpleDateFormat.format(date);
+
+            String from = "irdhaislakhuafa@gmail.com",
+                    to = "rizkiekaputri0911r@gmail.com",
+                    subject = "New product has been created",
+                    textMessage = "New product with name \"" + product.getName() + "\" and code \"" + product.getCode()
+                            + "\" has been created at " + now;
+
+            emailService.sendEmail(from, to, subject, textMessage);
+        }).start();
         Product tempProduct = productRepository.save(product);
         return (tempProduct != null);
     }

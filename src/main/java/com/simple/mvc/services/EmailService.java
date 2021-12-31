@@ -18,7 +18,7 @@ public class EmailService {
                 setFrom(from);
                 setTo(to);
                 setSubject(subject);
-                setText(text);
+                setText("Hi " + to + ", " + text);
             }
         };
         System.err.println(simpleMailMessage);

@@ -12,24 +12,16 @@ public class EmailService {
     private JavaMailSender mailSender;
 
     @Async
-    public Boolean sendEmail(String from, String to, String subject, String text) {
-        Boolean sendStatus = false;
-        try {
-            SimpleMailMessage simpleMailMessage = new SimpleMailMessage() {
-                {
-                    setFrom(from);
-                    setTo(to);
-                    setSubject(subject);
-                    setText(text);
-                }
-            };
-            System.err.println(simpleMailMessage);
-            mailSender.send(simpleMailMessage);
-            sendStatus = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            sendStatus = false;
-        }
-        return sendStatus;
+    public void sendEmail(String from, String to, String subject, String text) {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage() {
+            {
+                setFrom(from);
+                setTo(to);
+                setSubject(subject);
+                setText(text);
+            }
+        };
+        System.err.println(simpleMailMessage);
+        mailSender.send(simpleMailMessage);
     }
 }

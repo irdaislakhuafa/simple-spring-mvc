@@ -41,7 +41,8 @@ public class JasperReportsController {
                 "Content-Disposition",
                 "attachment; filename=\"" + fileName + "\"");
 
-        String keyword = session.getAttribute("searchKeyword").toString();
+        String searchKeyword = session.getAttribute("searchKeyword").toString();
+        String keyword = (searchKeyword == null) ? " " : searchKeyword;
 
         // ! call JasperPrint object
         JasperPrint jasperPrint = jasperReportsService

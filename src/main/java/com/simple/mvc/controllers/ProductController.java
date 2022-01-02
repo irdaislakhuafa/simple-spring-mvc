@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/simple-spring-mvc/views/products")
@@ -101,7 +102,7 @@ public class ProductController {
     // start search
     @PostMapping("/search")
     @Async
-    public String search(SearchKeyword keyword, Model model) {
+    public String search(SearchKeyword keyword, Model model, @RequestParam(name = "keyword") String stringKeyword) {
         // Double price = Double.valueOf(0);
         // try {
         // price = Double.valueOf(keyword.getKeyword());
@@ -109,6 +110,7 @@ public class ProductController {
         // // TODO: handle exception
         // e.printStackTrace();
         // }
+        System.out.println(stringKeyword);
         model.addAttribute("search", keyword);
         // model.addAttribute("listProducts",
         // productService.findByNameOrPriceOrCode(keyword.getKeyword(), price,
